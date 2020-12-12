@@ -4,6 +4,7 @@ use actix_web::cookie::SameSite;
 use actix_web::{middleware, App, HttpServer};
 use diesel::prelude::PgConnection;
 use diesel::r2d2::{self, ConnectionManager};
+use handlebars::Handlebars;
 
 use rustack::*;
 
@@ -23,6 +24,11 @@ async fn main() -> std::io::Result<()> {
 
         let secure = settings.http.secure.clone();
         let secret = settings.http.secret.clone();
+        let templates_dir = settings.files.templates_dir.clone();
+        let static_dir = settings.files.static_dir.clone();
+
+        let mut handlebars = Handlebars::new();
+        handlebars.register_templates_directory("*.hbs", &templates_dir).unwrap();
 
         App::new()
             .data(pool.clone())
@@ -38,7 +44,7 @@ async fn main() -> std::io::Result<()> {
                     .max_age(7 * 24 * 60 * 60)
                     .same_site(SameSite::Lax),
             )
-            .service(fs::Files::new("/static", "./static"))
+            .service(fs::Files::new("/static", &static_dir))
             .configure(controllers::urls)
     })
     .bind("127.0.0.1:8080")?

@@ -11,3 +11,7 @@ domain = "domain.com"
 user = "no-reply@domain.com"
 pass = "pass"
 
+[files]
+static_dir = "./static"
+templates_dir = "./templates"
+

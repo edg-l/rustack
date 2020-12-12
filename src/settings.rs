@@ -22,11 +22,18 @@ pub struct Smtp {
 }
 
 #[derive(Debug, Deserialize)]
+pub struct Files {
+    pub static_dir: String,
+    pub templates_dir: String,
+}
+
+#[derive(Debug, Deserialize)]
 pub struct Settings {
     pub debug: bool,
     pub database: Database,
     pub http: Http,
     pub smtp: Smtp,
+    pub files: Files,
 }
 
 impl Settings {
@@ -44,4 +51,3 @@ impl Settings {
         s.try_into()
     }
 }
-

@@ -1,0 +1,13 @@
+[database]
+url = "postgres://user:password@localhost/database"
+
+[http]
+url = "http://localhost:8080"
+secure = false
+secret = "-------------------------------------------------"
+
+[smtp]
+domain = "domain.com"
+user = "no-reply@domain.com"
+pass = "pass"
+

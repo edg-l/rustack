@@ -23,7 +23,7 @@ echo "Generated dot env file."
 
 if [[ $create_user =~ ^[Yy]$ ]]; then
 	psql -U postgres -c "create user '$db_user' with CREATEDB with password '$db_pass'"
-end
+fi
 
 diesel setup
 
@@ -47,3 +47,4 @@ for x in {Cargo.toml,package.json}; do
 	sed -i "s/rustack/$project_name/g" $x 
 	sed -i "s/~author~/$author <$email>/g" $x 
 done
+

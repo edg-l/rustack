@@ -35,7 +35,7 @@ echo $db_url
 sed "${line_db_url}s,.*,$db_url," conf/default.toml > conf/development.toml
 
 # Secret used to store session.
-secret=$(tr -dc 'A-Za-z0-9!#$%&()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 48 ; echo)
+secret=$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 48 ; echo)
 
 secret_str="secret = \"$secret\""
 

@@ -6,7 +6,9 @@ Work in progress.
 # Usage
 First clone:
 
-`git clone https://github.com/edg-l/rustack`
+```bash
+git clone https://github.com/edg-l/rustack
+```
 
 Run the script `setup.sh` after cloning for an automated setup.
 

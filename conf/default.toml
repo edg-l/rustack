@@ -1,5 +1,5 @@
 [database]
-url = "postgres://user:password@localhost/{{crate_name}}"
+url = "postgres://user:password@localhost/dbname"
 
 [http]
 url = "http://localhost:8080"

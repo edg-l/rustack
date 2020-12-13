@@ -6,7 +6,7 @@ use diesel::prelude::PgConnection;
 use diesel::r2d2::{self, ConnectionManager};
 use handlebars::Handlebars;
 
-use rustack::*;
+use {{crate_name}}::*;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {

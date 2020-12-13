@@ -1,0 +1,13 @@
+{
+  "name": "{{project-name}}",
+  "version": "1.0.0",
+  "author": "{{authors}}",
+  "scripts": {
+    "build": "npx tailwindcss build tailwind.css -o ./static/css/main.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.1.0",
+    "postcss": "^8.2.1",
+    "tailwindcss": "^2.0.2"
+  }
+}

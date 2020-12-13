@@ -3,6 +3,8 @@
 conf/*.toml
 !conf/default.toml
 
+static/css/main.css
+
 .env
 
 node_modules/

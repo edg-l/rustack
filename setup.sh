@@ -22,7 +22,7 @@ echo -e "APP_DEBUG=1\nRUN_MODE=development\nRUST_LOG=debug" >> .env
 echo "Generated dot env file."
 
 if [[ $create_user =~ ^[Yy]$ ]]; then
-	psql -U postgres -c "create user '$db_user' with CREATEDB with password '$db_pass'"
+	psql -U postgres -c "create user '$db_user' with CREATEDB PASSWORD '$db_pass'"
 fi
 
 diesel setup

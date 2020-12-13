@@ -13,11 +13,19 @@ read -p 'Database name: ' db_name
 read -p 'DB user: ' db_user
 read -sp 'DB pass: ' db_pass
 echo
+read -p 'Create postgres user with provided data? (y/n) ' -n 1 create_user
+echo
 
 # Generate .env
 echo "DATABASE_URL=postgres://$db_user:$db_pass@localhost/$db_name" > .env
 echo -e "APP_DEBUG=1\nRUN_MODE=development\nRUST_LOG=debug" >> .env
 echo "Generated dot env file."
+
+if [[ $create_user =~ ^[Yy]$ ]]; then
+	psql -U postgres -c "create user '$db_user' with CREATEDB with password '$db_pass'"
+end
+
+diesel setup
 
 # Generate development.toml
 

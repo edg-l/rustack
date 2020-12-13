@@ -1,18 +1,31 @@
 ## Rustack
-Currently work in progress, it's not a template yet.
+An opinionated fullstack web template for rust that glues actix.rs with other components.
 
-A fullstack web template for rust.
+Work in progress.
 
-You can use this template using [cargo-generate](https://github.com/ashleygwilliams/cargo-generate), install it with:
+# Usage
+First clone:
 
-`cargo install cargo-generate`
+`git clone https://github.com/edg-l/rustack`
 
-Then:
+Run the script `setup.sh` after cloning for an automated setup.
 
-`cargo generate --git https://github.com/edg-l/rustack.git`
+If you select yes to the option to create a database user and your psql "postgres" user is behind a password, you can provide it with `PGPASSWORD=password ./setup.sh`
 
-Once it's generated, you should copy the `.env.example` file to `.env` and edit it, then run `diesel setup` (you need diesel_cli installed).
+You need `diesel_cli` tool installed.
 
-You should also copy `default.toml` to `development.toml` under the `conf/` directory and configure it.
+## Tech used
 
-TODO: Automate this more.
+- Database: [diesel.rs (postgresql for now)](https://diesel.rs/) ORM.
+- Templates: [handlebars](https://handlebarsjs.com/).
+- Css: [tailwindcss](https://tailwindcss.com/).
+- Web framework: [actix.rs](https://actix.rs/).
+- Validation: [validator](https://github.com/Keats/validator)
+- SMTP: [lettre](https://github.com/lettre/lettre)
+- Markdown: [comrak](https://github.com/kivikakk/comrak)
+- Password encryption: [rust-argon2](https://github.com/sru-systems/rust-argon2)
+- Cache: [cached](https://github.com/jaemk/cached)
+
+# TODO
+- Add option to generate a users table automatically + code.
+- Add bin program to automate stuff afterwards.

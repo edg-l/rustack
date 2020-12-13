@@ -1,7 +1,7 @@
 {
-  "name": "{{project-name}}",
+  "name": "rustack",
   "version": "1.0.0",
-  "author": "{{authors}}",
+  "author": "Edgar <git@edgarluque.com>",
   "scripts": {
     "build": "npx tailwindcss build tailwind.css -o ./static/css/main.css"
   },

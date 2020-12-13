@@ -6,13 +6,12 @@ use diesel::prelude::PgConnection;
 use diesel::r2d2::{self, ConnectionManager};
 use handlebars::Handlebars;
 
-use {{crate_name}}::*;
+use rustack::*;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     dotenv::dotenv().ok();
     env_logger::init();
-
 
     HttpServer::new(move || {
         let settings = settings::Settings::new().expect("error loading settings");
@@ -28,7 +27,9 @@ async fn main() -> std::io::Result<()> {
         let static_dir = settings.files.static_dir.clone();
 
         let mut handlebars = Handlebars::new();
-        handlebars.register_templates_directory("*.hbs", &templates_dir).unwrap();
+        handlebars
+            .register_templates_directory("*.hbs", &templates_dir)
+            .unwrap();
 
         App::new()
             .data(pool.clone())

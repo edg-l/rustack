@@ -60,9 +60,9 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .data(pool.clone())
-            .data(settings_data.clone())
+            .app_data(settings_data.clone())
             .data(mailer_data.clone())
-            .data(comrak_data.clone())
+            .app_data(comrak_data.clone())
             .wrap(middleware::NormalizePath::default())
             .wrap(middleware::Logger::new(
                 r#"%a %{X-Real-IP}i %t "%r" %s %b "%{Referer}i" "%{User-Agent}i" %T"#,

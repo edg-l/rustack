@@ -31,6 +31,7 @@ async fn main() -> std::io::Result<()> {
     handlebars
         .register_templates_directory("*.hbs", &templates_dir)
         .unwrap();
+    let handlebars_ref = web::Data::new(handlebars);
 
     let comrak_options = ComrakOptions {
         extension: ComrakExtensionOptions {
@@ -60,6 +61,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .data(pool.clone())
+            .app_data(handlebars_ref.clone())
             .app_data(settings_data.clone())
             .data(mailer_data.clone())
             .app_data(comrak_data.clone())

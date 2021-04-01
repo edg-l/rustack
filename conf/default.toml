@@ -13,5 +13,3 @@ pass = "pass"
 
 [files]
 static_dir = "./static"
-templates_dir = "./templates"
-

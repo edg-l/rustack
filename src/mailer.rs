@@ -1,15 +1,23 @@
+use std::fmt;
+
 use crate::settings::Settings;
 use actix::prelude::*;
-use lettre::smtp::authentication::Credentials;
-use lettre::{SmtpClient, SmtpTransport, Transport};
-use lettre_email::Email;
+use lettre::transport::smtp::authentication::Credentials;
+use lettre::{Message as MailMessage, SmtpTransport, Transport};
+use tracing::{error, info};
 
-#[derive(Message)]
+#[derive(Message, Debug)]
 #[rtype(result = "()")]
-pub struct MailMsg(pub Email);
+pub struct MailMsg(pub MailMessage);
 
 pub struct Mailer {
     pub transport: SmtpTransport,
+}
+
+impl fmt::Debug for Mailer {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "mailer")
+    }
 }
 
 impl Actor for Mailer {
@@ -19,10 +27,11 @@ impl Actor for Mailer {
 impl Handler<MailMsg> for Mailer {
     type Result = ();
 
+    #[tracing::instrument]
     fn handle(&mut self, msg: MailMsg, _: &mut Self::Context) -> Self::Result {
-        match self.transport.send(msg.0.into()) {
-            Err(e) => log::error!(target: "mailer", "error sending email: {:?}", e),
-            _ => {}
+        match self.transport.send(&msg.0) {
+            Err(e) => error!("error sending email: {:?}", e),
+            _ => info!("sent email message"),
         }
     }
 }
@@ -30,16 +39,13 @@ impl Handler<MailMsg> for Mailer {
 impl Mailer {
     pub fn new(settings: &Settings) -> Self {
         Self {
-            transport: SmtpTransport::new({
-                let mut client = SmtpClient::new_simple(&settings.smtp.domain).unwrap();
-
-                client = client.credentials(Credentials::new(
+            transport: SmtpTransport::relay(&settings.smtp.domain)
+                .unwrap()
+                .credentials(Credentials::new(
                     settings.smtp.user.clone(),
                     settings.smtp.pass.clone(),
-                ));
-
-                client
-            }),
+                ))
+                .build(),
         }
     }
 }

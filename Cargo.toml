@@ -1,37 +1,36 @@
 [package]
 name = "rustack"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["~author~"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-actix = "0.10.0"
-actix-files = "0.5.0"
-actix-service = "1.0.6"
-actix-session = "0.4.0"
-actix-web = "3.3.2"
-cached = "0.22.0"
+actix = "0.11.1"
+actix-files = "0.6.0-beta.3"
+actix-service = "2.0.0-beta.5"
+actix-session = "0.4.1"
+actix-web = "4.0.0-beta.4"
+cached = "0.23.0"
 chrono = { version = "0.4.19", features = ["serde"] }
-clap = "2.33.3"
+clap = "3.0.0-beta.2"
 colored = "2.0.0"
-comrak = "0.9.0"
-config = "0.10.1"
-diesel = { version = "1.4.5", features = ["postgres", "r2d2", "chrono", "uuidv07"] }
+comrak = "0.10.0"
+config = "0.11.0"
 dotenv = "0.15.0"
-env_logger = "0.8.2"
-futures = "0.3.8"
-handlebars = { version = "3.5.2", features = ["dir_source"] }
-lettre = "0.9.5"
-lettre_email = "0.9.4"
-log = "0.4.11"
-r2d2 = "0.8.9"
-rand = "0.8.1"
-regex = "1.4.2"
+env_logger = "0.8.3"
+futures = "0.3.13"
+lettre = "0.10.0-beta.3"
+tracing = "0.1.25"
+rand = "0.8.3"
+regex = "1.4.5"
 rust-argon2 = "0.8.3"
-serde = { version = "1.0.118", features = ["derive"] }
-serde_json = "1.0.61"
-sitewriter = "0.2.4"
-uuid = { version = "0.8.1", features = ["serde", "v4"] }
-validator = { version = "0.12.0", features = ["derive"] }
+serde = { version = "1.0.125", features = ["derive"] }
+serde_json = "1.0.64"
+sitewriter = "0.3.2"
+validator = { version = "0.13.0", features = ["derive"] }
+askama = "0.10.5"
+sqlx = { version = "0.5.1", features = [ "postgres", "runtime-actix-rustls", "macros", "migrate", "uuid", "chrono" ] }
+thiserror = "1.0.24"
+derive_more = "0.99.13"

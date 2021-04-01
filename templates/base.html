@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{% block title %}{{ title }} | Rustack{% endblock %}</title>
+	{% block meta %}{% endblock %}
+	<link rel="stylesheet" type="text/css" href="/static/css/main.min.css" />
+	{% block head %}{% endblock %}
+</head>
+
+<body class="bg-bg text-fg">
+	<div class="p-6 mx-auto my-2 border-2 shadow text-fg max-w-screen-lg bg-panel border-panel-border">
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>

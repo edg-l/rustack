@@ -24,7 +24,6 @@ pub struct Smtp {
 #[derive(Debug, Deserialize)]
 pub struct Files {
     pub static_dir: String,
-    pub templates_dir: String,
 }
 
 #[derive(Debug, Deserialize)]

@@ -1,17 +1,15 @@
-use actix_web::{get, web, HttpResponse};
-use handlebars::Handlebars;
-use serde_json::json;
+use actix_web::{HttpRequest, HttpResponse, get, web};
+use crate::errors::*;
+use crate::views::*;
 
 pub fn urls(cfg: &mut web::ServiceConfig) {
+    // Add your endpoints here:
     cfg.service(index);
 }
 
 #[get("/")]
-pub fn index(hb: web::Data<Handlebars>) -> HttpResponse {
-    let data = json!({
-        "title": "Home"
-    });
-    let body = hb.render("index", &data).unwrap();
-
-    HttpResponse::Ok().body(body)
+pub async fn index() -> AppResponse {
+    let template = Index::new("Home");
+    let body = template.render()?;
+    Ok(HttpResponse::Ok().content_type("text/html").body(body))
 }

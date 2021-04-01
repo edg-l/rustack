@@ -25,8 +25,6 @@ if [[ $create_user =~ ^[Yy]$ ]]; then
 	psql -U postgres -c "create user $db_user with CREATEDB PASSWORD '$db_pass'"
 fi
 
-diesel setup
-
 # Generate development.toml
 
 # DB url

@@ -7,6 +7,7 @@ use crate::settings::Settings;
 pub fn urls(cfg: &mut web::ServiceConfig) {
     // Add your endpoints here:
     cfg.service(index);
+    cfg.service(sitemap);
 }
 
 #[get("/")]

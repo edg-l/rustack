@@ -4,13 +4,14 @@ use actix_web::{middleware, web, App, HttpServer};
 use sqlx::postgres::PgPoolOptions;
 
 mod controllers;
-mod mailer;
+mod actors;
 mod models;
-mod schema;
 mod settings;
 mod markdown;
 mod errors;
 mod views;
+
+use actors::*;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -21,10 +22,10 @@ async fn main() -> std::io::Result<()> {
     let settings = settings::Settings::new().expect("error loading settings");
 
     // Start the mailer actor.
-    let mailer = mailer::Mailer::new(&settings).start();
+    let mailer = Mailer::new(&settings).start();
 
     let pool = PgPoolOptions::new()
-        .connect(&settings.database.url)
+        .connect(settings.database.url.as_str())
         .await
         .expect("error creating db pool");
 

@@ -34,3 +34,4 @@ askama = "0.10.5"
 sqlx = { version = "0.5.1", features = [ "postgres", "runtime-actix-rustls", "macros", "migrate", "uuid", "chrono" ] }
 thiserror = "1.0.24"
 derive_more = "0.99.13"
+url = { version = "2", features = ["serde"] }

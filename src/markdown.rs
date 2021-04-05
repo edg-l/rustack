@@ -1,3 +1,5 @@
+//! Configuration for markdown rendering.
+
 use comrak::{ComrakExtensionOptions, ComrakOptions, ComrakParseOptions, ComrakRenderOptions};
 
 pub fn get_markdown_options() -> ComrakOptions {

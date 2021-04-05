@@ -1,15 +1,25 @@
+//! Settings
+//!
+//! Application settings
+//!
+//! This loads settings from the conf/ folder, it can merge multiple files.
+//!
+//!
+
 use config::{Config, ConfigError, Environment, File};
+use url::Url;
 use serde::Deserialize;
+use std::path::PathBuf;
 use std::env;
 
 #[derive(Debug, Deserialize)]
 pub struct Database {
-    pub url: String,
+    pub url: Url,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct Http {
-    pub url: String,
+    pub url: Url,
     pub secure: bool,
     pub secret: String,
 }
@@ -23,7 +33,7 @@ pub struct Smtp {
 
 #[derive(Debug, Deserialize)]
 pub struct Files {
-    pub static_dir: String,
+    pub static_dir: PathBuf,
 }
 
 #[derive(Debug, Deserialize)]

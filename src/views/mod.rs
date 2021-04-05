@@ -1,3 +1,8 @@
+//! Views
+//!
+//! Define the app views here.
+//!
+
 pub use askama::Template;
 use derive_more::Constructor;
 

@@ -1,13 +1,18 @@
+//! Mailer actor
+//!
+//! This actor is used to queue and send emails
+//!
+
 use std::fmt;
 
 use crate::settings::Settings;
 use actix::prelude::*;
 use lettre::transport::smtp::authentication::Credentials;
 use lettre::{Message as MailMessage, SmtpTransport, Transport};
-use tracing::{error, info};
+use tracing::debug;
 
 #[derive(Message, Debug)]
-#[rtype(result = "()")]
+#[rtype(result = "Result<lettre::transport::smtp::response::Response, lettre::transport::smtp::Error>")]
 pub struct MailMsg(pub MailMessage);
 
 pub struct Mailer {
@@ -25,14 +30,12 @@ impl Actor for Mailer {
 }
 
 impl Handler<MailMsg> for Mailer {
-    type Result = ();
+    type Result = Result<lettre::transport::smtp::response::Response, lettre::transport::smtp::Error>;
 
     #[tracing::instrument]
     fn handle(&mut self, msg: MailMsg, _: &mut Self::Context) -> Self::Result {
-        match self.transport.send(&msg.0) {
-            Err(e) => error!("error sending email: {:?}", e),
-            _ => info!("sent email message"),
-        }
+        debug!("Sending email: {:?}", msg);
+        self.transport.send(&msg.0)
     }
 }
 

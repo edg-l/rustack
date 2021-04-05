@@ -1,3 +1,8 @@
+//! # Errors
+//!
+//! This module contains a enum with all the errors your app has and how to render them.
+//!
+
 use std::fmt::Debug;
 
 use actix_web::http::StatusCode;
@@ -9,6 +14,7 @@ use validator::ValidationErrors;
 use crate::views::Error as ViewError;
 use tracing::error;
 
+#[allow(dead_code)]
 #[derive(Error, Debug)]
 pub enum AppError {
     #[error("validation errors {0}")]

@@ -29,7 +29,6 @@ fi
 
 # DB url
 db_url="url = \"postgres://$db_user:$db_pass@localhost/$db_name\""
-echo $db_url
 sed "${line_db_url}s,.*,$db_url," conf/default.toml > conf/development.toml
 
 # Secret used to store session.

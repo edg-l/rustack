@@ -4,6 +4,7 @@ conf/*.toml
 !conf/default.toml
 
 static/css/main.css
+static/css/main.min.css
 
 .env
 

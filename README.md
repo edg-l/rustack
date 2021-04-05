@@ -1,6 +1,8 @@
 ## Rustack
 An opinionated fullstack web template for rust that glues actix.rs with other components.
 
+While it is still work in progress, I think it's usable and a starting point.
+
 # Usage
 First clone:
 

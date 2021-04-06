@@ -39,7 +39,7 @@ impl Todo {
     }
 
     pub async fn get(pool: &PgPool, uuid: &Uuid) -> Result<Todo> {
-        sqlx::query_as("SELCT * FROM todo WHERE id = ?")
+        sqlx::query_as("SELECT * FROM todo WHERE id = ?")
             .bind(uuid)
             .fetch_one(pool)
             .await
